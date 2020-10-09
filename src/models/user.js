@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const crypto = require("crypto-js");
+const bcrypt = require("bcrypt");
 
 const UserSchema  = new mongoose.Schema({
     username: {
@@ -40,28 +40,21 @@ UserSchema.pre("save", function (next) {
     if (this.isModified("password")) {
         const hash = hashPassword(this.password);
         this.password = hash.password;
-        this.salt = hash.salt;
+        
     }
     next();
 });
 
 UserSchema.methods.validPassword = async function (password) {
-    const hash = crypto
-        .pbkdf2Sync(password, this.salt, 8, 128, "sha512")
-        .toString("hex");
+    const hash = bcrypt.hash(password,8)
     return this.password === hash;
 };
 
 function hashPassword(password) {
-    let salt = crypto.randomBytes(16).toString("hex");
-    return {
-        password: crypto
-            .pbkdf2Sync(password, salt, 8, 128, "sha512")
-            .toString("hex"),
-        salt
-    };
+    
+    return  bcrypt.hash(password,8)
 }
 
-const User = model-("User", UserSchema);
-export default User;
+const User = mongoose.model("User", UserSchema);
+module.exports = User
 
