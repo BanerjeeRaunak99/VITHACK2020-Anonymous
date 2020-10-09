@@ -18,20 +18,53 @@ const userController = {
             let user = await User.findOne({
                 username: req.body.username,
             });
+            var check = await user.validPassword(req.body.password);
+            console.log(check)
 
-            if (!(user || user.validPassword(req.body.password))) {
+            if (!check) {
                 res.status(404).send("Invalid Credentials")
             }
+            else{
+                res.status(200).json({
+                    id: user._id,
+                    
+                    username: user.username,
+                });
+
+            }
             
-            res.status(200).json({
-                id: user._id,
-                
-                username: user.username,
-            });
+            
         } catch (e) {
             next(e);
         }
     },
+
+    submitVitals:async(req,res,next)=>{
+        try{
+            let user = await User.findOne({
+                username: req.header('username'),
+            });
+            var check = await user.validPassword(req.header('password'));
+            if (!check) {
+                res.status(401).send("Not Authorized")
+            }
+            else{
+                user.pressure = user.pressure.concat(req.body.pressure);
+                user.temperature = user.temperature.concat(req.body.temperature)
+                user.respiration = user.respiration.concat(req.body.respiration)
+                user.pulse = user.pulse.concat(req.body.pulse)
+                user.save()
+                res.status(200).json({
+                    status:"okay in submit vitals"
+            })
+        }
+            
+
+        }
+        catch(e){
+            next(e);
+        }
+    } 
 
 };
 
