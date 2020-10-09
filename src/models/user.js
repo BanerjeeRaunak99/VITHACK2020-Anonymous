@@ -26,10 +26,22 @@ const UserSchema  = new mongoose.Schema({
     },
     lastName: String,
     salt: String,
-    pressure:[{type:String}],
-    temperature:[{type:String}],
-    respiration:[{type:String}],
-    pulse:[{type:String}],
+    pressure:[{
+        val:String,
+        time:String
+    }],
+    temperature:[{
+        val:String,
+        time:String
+    }],
+    respiration:[{
+        val:String,
+        time:String
+    }],
+    pulse:[{
+        val:String,
+        time:String
+    }],
 
 },
 {
