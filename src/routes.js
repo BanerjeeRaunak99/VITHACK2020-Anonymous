@@ -7,5 +7,6 @@ const router = new express.Router();
 router.post("/signup", userController.create);
 router.post("/signin", userController.login);
 router.patch("/submitvitals",userController.submitVitals)
+router.get("/records",userController.getRecords)
 
 module.exports = router;

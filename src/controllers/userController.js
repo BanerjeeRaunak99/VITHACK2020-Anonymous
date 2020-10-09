@@ -64,7 +64,33 @@ const userController = {
         catch(e){
             next(e);
         }
-    } 
+    },
+    getRecords:async(req,res,next)=>{
+        try{
+            let user = await User.findOne({
+                username: req.header('username'),
+            });
+            var check = await user.validPassword(req.header('password'));
+            if (!check) {
+                res.status(401).send("Not Authorized")
+            }
+            else{
+                res.status(200).json({
+                    pressure:user.pressure,
+                    temperature:user.temperature,
+                    respiration:user.respiration.respiration,
+                    pulse:user.pulse
+                    
+
+                })
+            }
+
+        } catch(e){
+            next(e)
+        }
+
+
+    },
 
 };
 
