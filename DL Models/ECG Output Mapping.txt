@@ -1,0 +1,15 @@
+Result ECG Mapping:
+
+0: "Normal Sinus Rhythm"
+1: "Other Rhythm"
+2: "Atrial Fibrillattion (Cardiac Arrhythmia)"
+3: "Noisy ECG Signal"
+
+
+
+Notification ECG Mapping:
+
+0: "You are having Normal Sinus Rhythm. Nothing to worry about. It's all fine."
+1: "You are having a different type of Sinus Rhythm. But there is nothing to worry about"
+2: "You ECG Sample is confirmed with Atrial Fibrillation. Please fix an appoinement with a doctor and take prescribed medicines as early as possible."
+3: "The ECG sample is Noisy. Please undergo the ECG sampling procedure again to get a better sample signal to perform the test on."
