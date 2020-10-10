@@ -1,0 +1,6 @@
+URTI    			0
+Healthy 			1
+COPD				2
+Bronchiectasis			3
+Pneumonia			4
+Bronchiolitis			5
