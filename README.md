@@ -14,3 +14,6 @@ This API is an **REST API** using **Nodejs** and uses **MonngoDB** as its databa
 * */submitvitals* Takes the vital readings from the user and stores it in his history.
 * */records* Sends the patient history back to the user.
 * */predict* Takes in the user's vital and runs it in the model and sends back any warning or insights that it finds.
+
+## Link to the frontend repository
+https://github.com/ramizkhan99/VITHACK20-AnonymousFrontend
